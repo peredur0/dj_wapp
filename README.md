@@ -38,11 +38,38 @@ dossier de l'application listings créé sous merchex/
 
 # Création d'une vue. 
 La vue est ce que le client va voir.
->> listings/views.py
+-> listings/views.py
 
 une fonction de vue prend en paramètre un objet HttpRequest (qui doit s'appeler request par convention)
 elle retourne toujours un objet HttpResponse
 
 ajouter la vue listings dans merchex/merchex/urls.py
 
+# Création d'un modèle
+Correspond à une classe d'objet python qui sera convertis et stocké par django dans la base
+
+-> listings/models.py
+
+une fois le modele créer on effectue une migration
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+## Création d'objet via le shell de Django
+
+```
+>>> from listings.models import Band
+>>> band = Band()
+>>> band.name = "Soul"
+>>> band.save()
+>>> band = Band.objects.create(name='Foo Fighters')
+>>> band = Band.objects.create(name='Gojira')
+>>> Band.objects.count()
+>>> Band.objects.all()
+```
+
+### Utiliser les objets dans les vues.
+Récupérer les objets band par exemple dans une des vues de listings/views.py
+on appelle pour cela la méthode de classe de la classe d'objet que l'on veut récupérer.
 
