@@ -35,3 +35,14 @@ dossier de l'application listings créé sous merchex/
 
 -> Ajouter 'listings' dans INSTALLED\_APPS dans merchex/merchex/settings.py
 
+
+# Création d'une vue. 
+La vue est ce que le client va voir.
+>> listings/views.py
+
+une fonction de vue prend en paramètre un objet HttpRequest (qui doit s'appeler request par convention)
+elle retourne toujours un objet HttpResponse
+
+ajouter la vue listings dans merchex/merchex/urls.py
+
+
