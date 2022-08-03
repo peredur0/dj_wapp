@@ -1,0 +1,13 @@
+<html>
+	<head><title>Merchex</title></head>
+	<body>
+		<h1>Hello Merchex</h1>
+		<p>Les groupes disponibles</p>
+		<ul>
+			<li>{{ bands.0.name }}</li>
+			<li>{{ bands.1.name }}</li>
+			<li>{{ bands.2.name }}</li>
+		</ul>
+	</body>
+</html>
+

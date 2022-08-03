@@ -73,3 +73,49 @@ python3 manage.py migrate
 Récupérer les objets band par exemple dans une des vues de listings/views.py
 on appelle pour cela la méthode de classe de la classe d'objet que l'on veut récupérer.
 
+
+# Utilisation des gabarits
+listing/templates/listings/hello.html
+La bonne pratique veut que l'on mette un sous répertoire qui porte le nom de l'application en dessous du rep template.
+
+Modification de la fonction de vue (listing/views.py) pour prendre en compte le gabarit
+
+avec l'utilisation de la fonction render, il devient possible d'utiliser les variables de gabarit {{ }}
+render(request, 'bands/hello.html', {'bands': bands}) 
+-> le 3e argument est un dictionnaire dont les clés sont des variables utilisable dans le code html car transformé par django
+
+Syntaxe itération du for dans django (gabarit)
+```
+{% for band in bands %}
+{{ band.name }}
+{% endfor %}
+```
+
+Utilisation de filtre pour les variables '|'
+
+```
+{{ bands|length }}
+{{ bands.1.name|lower }}
+{{ bands.1.name|upper }}
+```
+
+Utilsation de l'instruction if
+
+```
+{% if bands|length < 5 }
+	peu de
+{% elif bands|length < 10 %}
+	quelques
+{% else %}
+	beaucoup de
+{% endif %}
+	bal bla
+
+{% if band|lower == 'gojira' %}
+	balabal
+{% endif %}
+```
+
+le gabarit s'occupe de la présentation de la page.
+la vue s'occupe de la récupération des données. 
+
