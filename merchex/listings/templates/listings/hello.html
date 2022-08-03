@@ -1,17 +1,16 @@
-<html>
-	<head><title>Merchex</title></head>
-	<body>
-		<h1>Hello Merchex</h1>
-		<p>Les groupes disponibles, au nombre de {{ bands|length }} :</p>
-		<ul>
-			{% for band in bands %}
-				{% if band.name|lower == 'gojira' %}
-				<li>{{ band.name|upper }}</li>
-				{% else %}
-				<li>{{ band.name }}</li>
-				{% endif %}
-			{% endfor %}
-		</ul>
-	</body>
-</html>
+{% extends 'listings/base.html' %}
+
+{% block content %}
+<h1>Hello Merchex</h1>
+<p>Les groupes disponibles, au nombre de {{ bands|length }} :</p>
+<ul>
+	{% for band in bands %}
+		{% if band.name|lower == 'gojira' %}
+		<li>{{ band.name|upper }}</li>
+		{% else %}
+		<li>{{ band.name }}</li>
+		{% endif %}
+	{% endfor %}
+</ul>
+{% endblock %}
 

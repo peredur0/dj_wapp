@@ -119,3 +119,43 @@ Utilsation de l'instruction if
 le gabarit s'occupe de la présentation de la page.
 la vue s'occupe de la récupération des données. 
 
+
+## Utilisation d'un modèle de base pour éviter le DRY
+```
+<html>
+	<head><title>Merchex</title></head>
+	<body>
+
+		{% block content %}{% endblock %}
+	</body>
+</html>
+```
+block est un espace réservé qui a le nom de content et quio va recevoir du contenu.
+
+reprendre le code de la page qui doit utiliser la base
+```
+{% extends 'listings/base.html' %}
+
+{% block content %}
+... code html spécifique
+{% endblock %}
+```
+
+### Utilisation de fichier static CSS
+créer un fichier /listings/static/listings/style.css
+
+dans le fichier base.html
+```
+{% load static %}
+<html>
+	<head>
+		<title>Merchex</title>
+		<link rel="stylesheet" href={% static 'listings/style.css' %} />
+```
+
+le 'static' indique qu'il faut chercher dans le répertoire spécial 'static' de l'application
+bien penser à faire le load du static.
+
+
+
+
