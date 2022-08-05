@@ -157,5 +157,37 @@ le 'static' indique qu'il faut chercher dans le répertoire spécial 'static' de
 bien penser à faire le load du static.
 
 
+# Informations complémentaire sur les modèles
+1.Appliquer des valeurs min et max
+2.valeur par défault
+3.null autorisé
+```
+from django.core.validators import MaxValueValidator, MinValueValidator
+(validator=[MinValueValidator=1, MaxValueValidator=100])
+(default=value)
+(null=True, blank=True)
+```
+
+# Interface d'administration et CRUD
+
+1. création d'un superuser
+```
+python3 manage.py createsuperuser
+```
+
+Indiquer à Django de gérer les modèles via le site d'administration. 
+fichier listings/admin.py
+
+```
+from django.contrib import admin
+from listings.models import Band
+
+admin.site.register(Band)
+```
+Accès via IP:PORT/admin
+
+
+
+
 
 
