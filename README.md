@@ -69,6 +69,11 @@ python3 manage.py migrate
 >>> Band.objects.all()
 ```
 
+Récuperationd des objets:
+* MODEL.objects.all() > Récupère tous les objets
+* MODEL.objects.get(id=VALEUR) > récupération d'un objet par son id
+
+
 ### Utiliser les objets dans les vues.
 Récupérer les objets band par exemple dans une des vues de listings/views.py
 on appelle pour cela la méthode de classe de la classe d'objet que l'on veut récupérer.
@@ -204,7 +209,7 @@ Accès via IP:PORT/admin
 python3 manage.py showmigrations
 # Récupérer le nom et applicationde la migration précédente
 # Effectuer le rollback
-python3 manage.py migrate \<Application\> \<nom de la migration\>
+python3 manage.py migrate <Application> <nom de la migration>
 python3 manage.py migrate listings 0005\_listing\_band
 rm listings/migrations/0006\_band\_like\_new
 
@@ -215,5 +220,29 @@ refaire une migration avec les modifications
 python3 manage.py makemigrations --merge
 ```
 
+# Interface utilisateur
+Accès aux différentes pages, merchex/merchex/urls.py
+
+```
+from listings import views
+
+urlpatterns = [
+...
+	path('bands/', views.band_list, name='band-list'),
+	path('bands/<int:id>/', views.band_detail) 
+```
+Dans listings/views.py
+```
+def band_detail(request, id):
+	return render(request, 'listings/band_detail.html', {'id': id}
+```
+Dans listings/templates/listings.band\_detail.html
+```
+{% extends 'listings/base.html' %}
+
+{% block content %}
+<h2>L'identifiant est {{ id }}</h2>
+{% endblock %}
+```
 
 
