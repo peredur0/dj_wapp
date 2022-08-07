@@ -157,7 +157,16 @@ le 'static' indique qu'il faut chercher dans le répertoire spécial 'static' de
 bien penser à faire le load du static.
 
 
-# Informations complémentaire sur les modèles
+### Liaison entre modèle
+Utilisation de clé étrangère
+```
+# ajouter un nouveau champs
+band = models.ForeignKey(\<Model de rattachement\>, null=True, on\_delete=models.SET\_NULL)
+```
+
+
+
+### Informations complémentaire sur les modèles
 1.Appliquer des valeurs min et max
 2.valeur par défault
 3.null autorisé
@@ -187,7 +196,24 @@ admin.site.register(Band)
 Accès via IP:PORT/admin
 
 
+# Les pièges de la migration
+## Annuler une migration non désirée
 
+```
+# Afficher les migrations
+python3 manage.py showmigrations
+# Récupérer le nom et applicationde la migration précédente
+# Effectuer le rollback
+python3 manage.py migrate \<Application\> \<nom de la migration\>
+python3 manage.py migrate listings 0005\_listing\_band
+rm listings/migrations/0006\_band\_like\_new
+
+# solution 2
+refaire une migration avec les modifications 
+
+# Fusion de migration
+python3 manage.py makemigrations --merge
+```
 
 
 
