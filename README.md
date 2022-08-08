@@ -245,4 +245,66 @@ Dans listings/templates/listings.band\_detail.html
 {% endblock %}
 ```
 
+# Réaliser un formulaire
+Créer un fichier listings/forms.py
+```
+from django import forms
+class ContactUsForm(forms.Form):
+	name = forms.CharField(required=False)
+	email = forms.EmailField()
+	message = forms.CharField(max_length=1000)
+```
+
+Créer la vue : listings/views.py
+```
+from listings.forms import ContactUsForm
+
+def contact(request):
+	form = ContactUsForm()
+	return render(request, 'listings/contact.html', {'form': form}
+```
+
+Créer le template html : listings/templates/listings/contact.html
+```
+<form action="" method="post" novalidate>
+	{% csrf_token %}
+	{{ formi.as_p }}	# as_p pour empiler
+	<input type="submit" value="Envoyer">
+</form>
+```
+
+# Envoyer un mail
+Dans la gestion de la vue
+listings/views.py
+```
+from django.shortcuts import render, redirect
+import django.core.mail import send_mail
+
+def contact(request):
+	if request.method == 'POST':
+		form = ContactUsForm(request.POST)
+
+		if form.is_valid():
+			send_mail(
+				subject=f'Message de {from.cleaned_data["name"] or "anonyme"}',
+				message=form.cleaned_data['message'],
+				from_email=form.cleaned_data['email'],
+				recipient_list=['admin@merchex.xyz']
+				)
+			return redirect('email-sent')
+	else:
+		form = ContactUsForm()
+
+	return render(request, 'listings/contact.html', {'form': form}
+```
+
+Service de messagerie fictif de django
+dans merchex/settings.py
+```
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+```
+
+
+
+
 

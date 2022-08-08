@@ -2,5 +2,12 @@
 
 {% block content %}
 <h1>contacte Nous</h1>
-<p>bientot le formulaire de contact</p>
+<p>Réponse peut-être ou pas</p>
+
+<form action="" method="post" novalidate>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Envoyer">
+</form>
+
 {% endblock %}

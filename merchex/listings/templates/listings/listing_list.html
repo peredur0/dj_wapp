@@ -5,7 +5,7 @@
 <p>Liste des annonces</p>
 <ol>
 	{% for ls in listings %}
-	<li>{{ ls.title }}</li>
+	<li><a href="{% url 'listing-detail' ls.id %}">{{ ls.title }}</a></li>
 	{% endfor %}
 </ol>
 {% endblock %}
