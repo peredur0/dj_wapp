@@ -305,6 +305,33 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ```
 
 
+# Création d'objet de modèle avec un modelForm
+Générer automatiquement un formulaire à partir d'un modèle
+
+dans listings/forms.py
+```
+from django import form
+
+from listings.models import Band
+
+class BandForm(forms.ModelForm):
+	class Meta:
+		model = Band
+		fields = '__all__'
+```
+
+## Exlcusion de champs du formulaire
+```
+class BandForm(forms.ModelForm):
+	class Meta:
+		model = Band
+		exclude = ('active', 'official_homepage')
+```
+pour exclure les champs du formulaire il faut qu'ils soient nullable ou avec une valeur par défaut.
+
+## Validation client
+Retirer les novalidate dans le code html
+
 
 
 

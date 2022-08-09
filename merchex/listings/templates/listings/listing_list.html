@@ -1,8 +1,8 @@
 {% extends 'listings/base.html' %}
 
 {% block content %}
-<h1>Les Listings</h1>
-<p>Liste des annonces</p>
+<h1>Les Annonces</h1>
+<a href="{% url 'listing-create' %}">Créer un nouveau groupe</a>
 <ol>
 	{% for ls in listings %}
 	<li><a href="{% url 'listing-detail' ls.id %}">{{ ls.title }}</a></li>
