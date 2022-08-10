@@ -15,6 +15,7 @@
 <p>{{ listing.description }}</p>
 
 <a href="{% url 'listing-change' listing.id %}">Modifier annonce</a>
+<a href="{% url 'listing-delete' listing.id %}">Supprimer l'annonce</a>
 <a href="{% url 'listing-list' %}">Liste des annonces</a>
 
 {% endblock %}

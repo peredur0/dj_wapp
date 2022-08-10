@@ -11,6 +11,12 @@
 			<a href="{% url 'contact' %}">Contact</a>
 		</nav>
 
+		{% if messages %}
+			{% for message in messages %}
+			<p>{% if message.tags %} {{ message.tags|upper }} : {% endif %} {{ message }}</p>
+			{% endfor %}
+		{% endif %}
+
 		{% block content%}{% endblock %}
 		
 	</body>

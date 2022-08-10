@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from django.contrib import messages
 from listings.models import Band, Listing
 from listings.forms import ContactUsForm, BandForm, ListingForm
 
@@ -93,4 +94,25 @@ def listing_update(request, id):
         form = ListingForm(instance=listing)
 
     return render(request, 'listings/listing_change.html', {'form': form})
+
+
+def band_delete(request, id):
+    band = Band.objects.get(id=id)
+
+    if request.method == 'POST':
+        band.delete()
+        messages.add_message(request, messages.INFO, f"Le groupe '{band}' a été supprimé")
+        return redirect('band-list')
+
+    return render(request, 'listings/band_delete.html', {'band': band})
+
+
+def listing_delete(request, id):
+    listing  = Listing.objects.get(id=id)
+    if request.method == 'POST':
+        listing.delete()
+        messages.add_message(request, messages.INFO, f"L'annonce '{listing}' a été supprimée")
+        return redirect('listing-list')
+
+    return render(request, 'listings/listing_delete.html', {'listing': listing})
 

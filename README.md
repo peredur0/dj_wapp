@@ -349,6 +349,27 @@ def band_update(request, id):
 	return render(request, 'listings/band_update.html', {'form': form}
 ```
 
+# Supprimer un objet
+utiliser la méthode band.delete()
+
+# Message de confirmation
+Dans listings/views.py
+```
+from django.contrib import messages
+
+messages.add_message(request, messaages.INFO, "message")
+```
+
+Dans le template de base
+```
+{% if messages %}
+	{% for message in messages %}
+		<p>{if message.tags %} {{ message.tags }} : {% endif %} {{ message }}</p>
+	{% endfor %}
+{% endif %}
+```
+
+
 
 
 
