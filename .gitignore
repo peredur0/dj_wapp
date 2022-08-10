@@ -1,3 +1,5 @@
 env/
 merchex/db.sqlite3
 token_gh
+__pycache__/
+
